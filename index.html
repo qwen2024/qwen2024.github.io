@@ -230,15 +230,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/08/12/ECDSA/" target="_self">
-          椭圆曲线算法
+        <a href="/2024/08/12/bufio/" target="_self">
+          bufio
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/ECDSA/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/bufio/" target="_self">
         <div>
-          ECDSA算法 一，什么是ECDSA算法 ECDSA全称：**Elliptic Curve Digital Signature Algorithm**  有兴趣的朋友可以去维基百科看看这个算法的算法原理。 椭圆曲线数字签名算法 既然是签名算法，就不是用来加密的。也就是说数据是公开的，只是用来保护数据不被篡改。   签名本身将被分成两部分，称为R和S。为了验证签名的正确性，你只需要公钥（用私钥在曲线
+          bufio前言 ​	流工具包，提供了读取器和写入器的对象创建和一些工具方法。  一，包介绍 12345678910// Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer// object, creating another object (Reader or Writer) that also imp
         </div>
       </a>
 
@@ -291,15 +291,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/08/12/bufio/" target="_self">
-          bufio
+        <a href="/2024/08/12/ECDSA/" target="_self">
+          椭圆曲线算法
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/bufio/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/ECDSA/" target="_self">
         <div>
-          bufio前言 ​	流工具包，提供了读取器和写入器的对象创建和一些工具方法。  一，包介绍 12345678910// Package bufio implements buffered I/O. It wraps an io.Reader or io.Writer// object, creating another object (Reader or Writer) that also imp
+          ECDSA算法 一，什么是ECDSA算法 ECDSA全称：**Elliptic Curve Digital Signature Algorithm**  有兴趣的朋友可以去维基百科看看这个算法的算法原理。 椭圆曲线数字签名算法 既然是签名算法，就不是用来加密的。也就是说数据是公开的，只是用来保护数据不被篡改。   签名本身将被分成两部分，称为R和S。为了验证签名的正确性，你只需要公钥（用私钥在曲线
         </div>
       </a>
 
@@ -474,15 +474,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/08/12/%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4/" target="_self">
-          两阶段提交(2PC)
+        <a href="/2024/08/12/%E4%B8%B2/" target="_self">
+          串--字符串
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E4%B8%B2/" target="_self">
         <div>
-          两阶段提交(2PC)  分布式事务的基本理论：基本遵循CPA理论，采用柔性事务特征，软状态或者最终一致性特点来保证最终一致性问题。  一，两阶段提交(2PC) 是一个非常经典的 强一致性，中心化的原子提交协议   一个中心化的协调者节点，N个参与者节点组成。   两个阶段：一个是投票阶段，提交&#x2F;执行阶段。  第一个阶段分为三步：第一步，协调者向所有的参与者发送事务预处理请求，并开始等待参
+          串–字符串一，前言 串的定义   串是由零个或多个字符组成的有限序列，又名字符串。   空字符串  零个字符的串就是空串。也就是常说的  “”    二，串的比较 字符串的比较实际是比较字符的值，根据不同的编码进行存储，最初的ASCII 到 Unicode。从最初的128个字符，到65w多。 字符串的长度一样，每一个相对位置的字符值都一样，就可以说这两个字符串是相等的。  三，串的顺序存储结构 就
         </div>
       </a>
 
@@ -535,15 +535,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/08/12/%E4%B8%B2/" target="_self">
-          串--字符串
+        <a href="/2024/08/12/%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4/" target="_self">
+          两阶段提交(2PC)
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E4%B8%B2/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4/" target="_self">
         <div>
-          串–字符串一，前言 串的定义   串是由零个或多个字符组成的有限序列，又名字符串。   空字符串  零个字符的串就是空串。也就是常说的  “”    二，串的比较 字符串的比较实际是比较字符的值，根据不同的编码进行存储，最初的ASCII 到 Unicode。从最初的128个字符，到65w多。 字符串的长度一样，每一个相对位置的字符值都一样，就可以说这两个字符串是相等的。  三，串的顺序存储结构 就
+          两阶段提交(2PC)  分布式事务的基本理论：基本遵循CPA理论，采用柔性事务特征，软状态或者最终一致性特点来保证最终一致性问题。  一，两阶段提交(2PC) 是一个非常经典的 强一致性，中心化的原子提交协议   一个中心化的协调者节点，N个参与者节点组成。   两个阶段：一个是投票阶段，提交&#x2F;执行阶段。  第一个阶段分为三步：第一步，协调者向所有的参与者发送事务预处理请求，并开始等待参
         </div>
       </a>
 
