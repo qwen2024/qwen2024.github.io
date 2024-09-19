@@ -1,160 +1,289 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>经典排序算法  下篇 | 老铁的平行空间</title><meta name="author" content="LaoTie"><meta name="copyright" content="LaoTie"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="经典排序算法  下篇 一，准备工作12345678910111213141516171819202122232425262728293031323334&#x2F;&#x2F;获取随机的数组func GetArry(count int) []int &amp;#123;	arr :&#x3D; make([]int, count)	rand.Seed(time.Now().UnixNano())	for i :&#x3D; 0; i &lt;">
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LaoTie">
+  <meta name="keywords" content="技术, 生活">
+  
+    <meta name="description" content="经典排序算法  下篇 一，准备工作12345678910111213141516171819202122232425262728293031323334&#x2F;&#x2F;获取随机的数组func GetArry(count int) []int &amp;#123;	arr :&#x3D; make([]int, count)	rand.Seed(time.Now().UnixNano())	for i :&#x3D; 0; i &lt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="经典排序算法  下篇">
 <meta property="og:url" content="https://qwen2024.github.io/2024/08/12/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8B/index.html">
 <meta property="og:site_name" content="老铁的平行空间">
 <meta property="og:description" content="经典排序算法  下篇 一，准备工作12345678910111213141516171819202122232425262728293031323334&#x2F;&#x2F;获取随机的数组func GetArry(count int) []int &amp;#123;	arr :&#x3D; make([]int, count)	rand.Seed(time.Now().UnixNano())	for i :&#x3D; 0; i &lt;">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://qwen2024.github.io/img/avator.jpg">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/849589/201710/849589-20171015230936371-1413523412.gif">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1258817/201904/1258817-20190420150936225-1441021270.gif">
+<meta property="og:image" content="https://images2017.cnblogs.com/blog/849589/201710/849589-20171015231740840-6968181.gif">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.kanzhun.com%2Fimages%2Fseo%2Fmianshiti%2F20191125%2F8c57857f177717f04d1255c32dbbec4e.gif&refer=http%3A%2F%2Fimg.kanzhun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627895630&t=9153e406f528898ed2cc32a5b13b204e">
+<meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F7492974-c980be774a0cc76d.gif&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627895837&t=0c184d3053683c556a256d8824edacd7">
 <meta property="article:published_time" content="2024-08-12T09:53:23.000Z">
 <meta property="article:modified_time" content="2024-08-12T07:49:03.076Z">
 <meta property="article:author" content="LaoTie">
 <meta property="article:tag" content="golang">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://qwen2024.github.io/img/avator.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://qwen2024.github.io/2024/08/12/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: undefined,
-  translate: undefined,
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '',
-  dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
-    buttonText: '加载更多'
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: '经典排序算法  下篇',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2024-08-12 15:49:03'
-}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
-      }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://images2017.cnblogs.com/blog/849589/201710/849589-20171015230936371-1413523412.gif">
+  
+  
+  
+  <title>经典排序算法  下篇 - 老铁的平行空间</title>
 
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
-        document.head.appendChild(script)
-      })
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"qwen2024.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
     
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="经典排序算法  下篇"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
     
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
     
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-12 17:53" pubdate>
+          2024年8月12日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
       
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
     
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avator.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="老铁的平行空间"><img class="site-icon" src="https://img2.imgtp.com/2024/04/15/T3yS3XWt.jpg"/><span class="site-name">老铁的平行空间</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">经典排序算法  下篇</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-08-12T09:53:23.000Z" title="发表于 2024-08-12 17:53:23">2024-08-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-08-12T07:49:03.076Z" title="更新于 2024-08-12 15:49:03">2024-08-12</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/golang/">golang</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="经典排序算法  下篇"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="经典排序算法-下篇"><a href="#经典排序算法-下篇" class="headerlink" title="经典排序算法  下篇"></a>经典排序算法  下篇</h2><hr>
-<h3 id="一，准备工作"><a href="#一，准备工作" class="headerlink" title="一，准备工作"></a>一，准备工作</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取随机的数组</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetArry</span><span class="params">(count <span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">	arr := <span class="built_in">make</span>([]<span class="type">int</span>, count)</span><br><span class="line">	rand.Seed(time.Now().UnixNano())</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; count; i++ &#123;</span><br><span class="line">		arr[i] = rand.Intn(<span class="number">100</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//打印数组</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Print</span><span class="params">(arr []<span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;打印:&quot;</span>)</span><br><span class="line">	<span class="keyword">for</span> _, k := <span class="keyword">range</span> arr &#123;</span><br><span class="line">		fmt.Println(k)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//交换位置</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">swap</span><span class="params">(s []<span class="type">int</span>, i, j <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	s[i], s[j] = s[j], s[i]</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取最大的元素</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GetArryMax</span><span class="params">(arr []<span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	biger := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> arr &#123;</span><br><span class="line">		<span class="keyword">if</span> v &gt; biger &#123;</span><br><span class="line">			biger = v</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> biger</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//获取数字位的值</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">digit</span><span class="params">(num <span class="type">int</span>, loc <span class="type">int</span>)</span></span> <span class="type">int</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> num % <span class="type">int</span>(math.Pow10(loc)) / <span class="type">int</span>(math.Pow10(loc<span class="number">-1</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">经典排序算法  下篇</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="经典排序算法-下篇"><a href="#经典排序算法-下篇" class="headerlink" title="经典排序算法  下篇"></a>经典排序算法  下篇</h2><hr>
+<h3 id="一，准备工作"><a href="#一，准备工作" class="headerlink" title="一，准备工作"></a>一，准备工作</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">//获取随机的数组</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">GetArry</span><span class="hljs-params">(count <span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>	arr := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, count)<br>	rand.Seed(time.Now().UnixNano())<br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; count; i++ &#123;<br>		arr[i] = rand.Intn(<span class="hljs-number">100</span>)<br>	&#125;<br>	<span class="hljs-keyword">return</span> arr<br>&#125;<br><span class="hljs-comment">//打印数组</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Print</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> &#123;<br>	fmt.Println(<span class="hljs-string">&quot;打印:&quot;</span>)<br>	<span class="hljs-keyword">for</span> _, k := <span class="hljs-keyword">range</span> arr &#123;<br>		fmt.Println(k)<br>	&#125;<br>&#125;<br><span class="hljs-comment">//交换位置</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">swap</span><span class="hljs-params">(s []<span class="hljs-type">int</span>, i, j <span class="hljs-type">int</span>)</span></span> &#123;<br>	s[i], s[j] = s[j], s[i]<br>&#125;<br><span class="hljs-comment">//获取最大的元素</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">GetArryMax</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	biger := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> _, v := <span class="hljs-keyword">range</span> arr &#123;<br>		<span class="hljs-keyword">if</span> v &gt; biger &#123;<br>			biger = v<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> biger<br>&#125;<br><span class="hljs-comment">//获取数字位的值</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">digit</span><span class="hljs-params">(num <span class="hljs-type">int</span>, loc <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	<span class="hljs-keyword">return</span> num % <span class="hljs-type">int</span>(math.Pow10(loc)) / <span class="hljs-type">int</span>(math.Pow10(loc<span class="hljs-number">-1</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="二，快速排序"><a href="#二，快速排序" class="headerlink" title="二，快速排序"></a>二，快速排序</h3><blockquote>
 <p>时间复杂度: </p>
@@ -164,8 +293,8 @@
 <li>最好：O(nlog<del>2</del>n)</li>
 </ul>
 </blockquote>
-<p><img src="https://images2017.cnblogs.com/blog/849589/201710/849589-20171015230936371-1413523412.gif"></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//快速排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">quickSort</span><span class="params">(arr []<span class="type">int</span>, start, end <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> start &lt; end &#123;</span><br><span class="line">		i, j := start, end</span><br><span class="line">		key := arr[(start+end)/<span class="number">2</span>]</span><br><span class="line">		<span class="keyword">for</span> i &lt;= j &#123;</span><br><span class="line">			<span class="keyword">for</span> arr[i] &lt; key &#123;</span><br><span class="line">				i++</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span> arr[j] &gt; key &#123;</span><br><span class="line">				j--</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">if</span> i &lt;= j &#123;</span><br><span class="line">				arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">				i++</span><br><span class="line">				j--</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> start &lt; j &#123;</span><br><span class="line">			quickSort(arr, start, j)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> end &gt; i &#123;</span><br><span class="line">			quickSort(arr, i, end)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//测试</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Test_FastSort</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	arr := GetArry(<span class="number">10</span>)</span><br><span class="line">	Print(arr)</span><br><span class="line">	quickSort(arr, <span class="number">0</span>, <span class="built_in">len</span>(arr)<span class="number">-1</span>)</span><br><span class="line">	Print(arr)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://images2017.cnblogs.com/blog/849589/201710/849589-20171015230936371-1413523412.gif" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">//快速排序</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">quickSort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>, start, end <span class="hljs-type">int</span>)</span></span> &#123;<br>	<span class="hljs-keyword">if</span> start &lt; end &#123;<br>		i, j := start, end<br>		key := arr[(start+end)/<span class="hljs-number">2</span>]<br>		<span class="hljs-keyword">for</span> i &lt;= j &#123;<br>			<span class="hljs-keyword">for</span> arr[i] &lt; key &#123;<br>				i++<br>			&#125;<br>			<span class="hljs-keyword">for</span> arr[j] &gt; key &#123;<br>				j--<br>			&#125;<br>			<span class="hljs-keyword">if</span> i &lt;= j &#123;<br>				arr[i], arr[j] = arr[j], arr[i]<br>				i++<br>				j--<br>			&#125;<br>		&#125;<br>		<span class="hljs-keyword">if</span> start &lt; j &#123;<br>			quickSort(arr, start, j)<br>		&#125;<br>		<span class="hljs-keyword">if</span> end &gt; i &#123;<br>			quickSort(arr, i, end)<br>		&#125;<br>	&#125;<br>&#125;<br><span class="hljs-comment">//测试</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Test_FastSort</span><span class="hljs-params">(t *testing.T)</span></span> &#123;<br>	arr := GetArry(<span class="hljs-number">10</span>)<br>	Print(arr)<br>	quickSort(arr, <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(arr)<span class="hljs-number">-1</span>)<br>	Print(arr)<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>通过一次排序将要排序的数据分成两部分。一部分要比另外一部分小，两个部分进行分别排序。核心是分治法。</p>
@@ -178,8 +307,8 @@
 <li>最好：O(nlog<del>2</del>n)</li>
 </ul>
 </blockquote>
-<p><img src="https://img2018.cnblogs.com/blog/1258817/201904/1258817-20190420150936225-1441021270.gif"></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//堆排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">HeapSort</span><span class="params">(arr []<span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	n := <span class="built_in">len</span>(arr) - <span class="number">1</span></span><br><span class="line">	<span class="keyword">for</span> k := n / <span class="number">2</span>; k &gt;= <span class="number">1</span>; k-- &#123;</span><br><span class="line">		sink(arr, k, n)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> n &gt; <span class="number">1</span> &#123;</span><br><span class="line">		swap(arr, <span class="number">1</span>, n)</span><br><span class="line">		n--</span><br><span class="line">		sink(arr, <span class="number">1</span>, n)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">sink</span><span class="params">(s []<span class="type">int</span>, k, n <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		i := <span class="number">2</span> * k</span><br><span class="line">		<span class="keyword">if</span> i &gt; n &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> i &lt; n &amp;&amp; s[i+<span class="number">1</span>] &gt; s[i] &#123;</span><br><span class="line">			i++</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> s[k] &gt;= s[i] &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		swap(s, k, i)</span><br><span class="line">		k = i</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://img2018.cnblogs.com/blog/1258817/201904/1258817-20190420150936225-1441021270.gif" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">//堆排序</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">HeapSort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> &#123;<br>	n := <span class="hljs-built_in">len</span>(arr) - <span class="hljs-number">1</span><br>	<span class="hljs-keyword">for</span> k := n / <span class="hljs-number">2</span>; k &gt;= <span class="hljs-number">1</span>; k-- &#123;<br>		sink(arr, k, n)<br>	&#125;<br>	<span class="hljs-keyword">for</span> n &gt; <span class="hljs-number">1</span> &#123;<br>		swap(arr, <span class="hljs-number">1</span>, n)<br>		n--<br>		sink(arr, <span class="hljs-number">1</span>, n)<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sink</span><span class="hljs-params">(s []<span class="hljs-type">int</span>, k, n <span class="hljs-type">int</span>)</span></span> &#123;<br>	<span class="hljs-keyword">for</span> &#123;<br>		i := <span class="hljs-number">2</span> * k<br>		<span class="hljs-keyword">if</span> i &gt; n &#123;<br>			<span class="hljs-keyword">break</span><br>		&#125;<br>		<span class="hljs-keyword">if</span> i &lt; n &amp;&amp; s[i+<span class="hljs-number">1</span>] &gt; s[i] &#123;<br>			i++<br>		&#125;<br>		<span class="hljs-keyword">if</span> s[k] &gt;= s[i] &#123;<br>			<span class="hljs-keyword">break</span><br>		&#125;<br>		swap(s, k, i)<br>		k = i<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>利用堆这种特殊的数据结构，完全的二叉树进行排序。大顶堆，小顶堆。</p>
@@ -192,8 +321,8 @@
 <li>最好：O(n+k)</li>
 </ul>
 </blockquote>
-<p><img src="https://images2017.cnblogs.com/blog/849589/201710/849589-20171015231740840-6968181.gif"></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计数排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CountingSort</span><span class="params">(arr []<span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">	biger := GetArryMax(arr)</span><br><span class="line">	fmt.Println(<span class="string">&quot;zuida:&quot;</span>, biger)</span><br><span class="line">	orderarr := <span class="built_in">make</span>([]<span class="type">int</span>, biger+<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">for</span> _, v := <span class="keyword">range</span> arr &#123;</span><br><span class="line">		orderarr[v]++</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> resarr []<span class="type">int</span></span><br><span class="line">	<span class="keyword">for</span> i, v := <span class="keyword">range</span> orderarr &#123;</span><br><span class="line">		<span class="keyword">if</span> v &gt; <span class="number">0</span> &#123;</span><br><span class="line">			<span class="keyword">for</span> j := <span class="number">1</span>; j &lt;= v; j++ &#123;</span><br><span class="line">				resarr = <span class="built_in">append</span>(resarr, i)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> resarr</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://images2017.cnblogs.com/blog/849589/201710/849589-20171015231740840-6968181.gif" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">//计数排序</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">CountingSort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>	biger := GetArryMax(arr)<br>	fmt.Println(<span class="hljs-string">&quot;zuida:&quot;</span>, biger)<br>	orderarr := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, biger+<span class="hljs-number">1</span>)<br>	<span class="hljs-keyword">for</span> _, v := <span class="hljs-keyword">range</span> arr &#123;<br>		orderarr[v]++<br>	&#125;<br>	<span class="hljs-keyword">var</span> resarr []<span class="hljs-type">int</span><br>	<span class="hljs-keyword">for</span> i, v := <span class="hljs-keyword">range</span> orderarr &#123;<br>		<span class="hljs-keyword">if</span> v &gt; <span class="hljs-number">0</span> &#123;<br>			<span class="hljs-keyword">for</span> j := <span class="hljs-number">1</span>; j &lt;= v; j++ &#123;<br>				resarr = <span class="hljs-built_in">append</span>(resarr, i)<br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> resarr<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>计数排序是一个稳定的排序算法。当输入的元素是 n 个 0到 k 之间的整数时，时间复杂度是O(n+k)，空间复杂度也是O(n+k)，其排序速度快于任何比较排序算法。当k不是很大并且序列比较集中时，计数排序是一个很有效的排序算法。</p>
@@ -206,8 +335,8 @@
 <li>最好：O(n)</li>
 </ul>
 </blockquote>
-<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.kanzhun.com%2Fimages%2Fseo%2Fmianshiti%2F20191125%2F8c57857f177717f04d1255c32dbbec4e.gif&refer=http%3A%2F%2Fimg.kanzhun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627895630&t=9153e406f528898ed2cc32a5b13b204e"></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//桶排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">BucketSort</span><span class="params">(arr []<span class="type">int</span>)</span></span> []<span class="type">int</span> &#123;</span><br><span class="line">	num := <span class="built_in">len</span>(arr)</span><br><span class="line">	max := GetArryMax(arr)</span><br><span class="line">	buckets := <span class="built_in">make</span>([][]<span class="type">int</span>, num)</span><br><span class="line">	index := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; num; i++ &#123;</span><br><span class="line">		index = arr[i] * (num - <span class="number">1</span>) / max</span><br><span class="line">		buckets[index] = <span class="built_in">append</span>(buckets[index], arr[i])</span><br><span class="line">	&#125;</span><br><span class="line">	tmpPos := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; num; i++ &#123;</span><br><span class="line">		bucketLen := <span class="built_in">len</span>(buckets[i])</span><br><span class="line">		<span class="keyword">if</span> bucketLen &gt; <span class="number">0</span> &#123;</span><br><span class="line">			SortInBucket(buckets[i])</span><br><span class="line">			<span class="built_in">copy</span>(arr[tmpPos:], buckets[i])</span><br><span class="line">			tmpPos += bucketLen</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> arr</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">SortInBucket</span><span class="params">(arr []<span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	length := <span class="built_in">len</span>(arr)</span><br><span class="line">	<span class="keyword">if</span> length &lt;= <span class="number">1</span> &#123;</span><br><span class="line">		<span class="keyword">return</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt; length; i++ &#123;</span><br><span class="line">		backup := arr[i]</span><br><span class="line">		j := i - <span class="number">1</span></span><br><span class="line">		<span class="keyword">for</span> j &gt;= <span class="number">0</span> &amp;&amp; backup &lt; arr[j] &#123;</span><br><span class="line">			arr[j+<span class="number">1</span>] = arr[j]</span><br><span class="line">			j--</span><br><span class="line">		&#125;</span><br><span class="line">		arr[j+<span class="number">1</span>] = backup</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.kanzhun.com%2Fimages%2Fseo%2Fmianshiti%2F20191125%2F8c57857f177717f04d1255c32dbbec4e.gif&refer=http%3A%2F%2Fimg.kanzhun.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627895630&t=9153e406f528898ed2cc32a5b13b204e" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">//桶排序</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">BucketSort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>	num := <span class="hljs-built_in">len</span>(arr)<br>	max := GetArryMax(arr)<br>	buckets := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>, num)<br>	index := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; num; i++ &#123;<br>		index = arr[i] * (num - <span class="hljs-number">1</span>) / max<br>		buckets[index] = <span class="hljs-built_in">append</span>(buckets[index], arr[i])<br>	&#125;<br>	tmpPos := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; num; i++ &#123;<br>		bucketLen := <span class="hljs-built_in">len</span>(buckets[i])<br>		<span class="hljs-keyword">if</span> bucketLen &gt; <span class="hljs-number">0</span> &#123;<br>			SortInBucket(buckets[i])<br>			<span class="hljs-built_in">copy</span>(arr[tmpPos:], buckets[i])<br>			tmpPos += bucketLen<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> arr<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">SortInBucket</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> &#123;<br>	length := <span class="hljs-built_in">len</span>(arr)<br>	<span class="hljs-keyword">if</span> length &lt;= <span class="hljs-number">1</span> &#123;<br>		<span class="hljs-keyword">return</span><br>	&#125;<br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt; length; i++ &#123;<br>		backup := arr[i]<br>		j := i - <span class="hljs-number">1</span><br>		<span class="hljs-keyword">for</span> j &gt;= <span class="hljs-number">0</span> &amp;&amp; backup &lt; arr[j] &#123;<br>			arr[j+<span class="hljs-number">1</span>] = arr[j]<br>			j--<br>		&#125;<br>		arr[j+<span class="hljs-number">1</span>] = backup<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>桶排序是计数排序的升级版。解决了如果数据值范围过大造成的桶数量多的问题，进行函数映射处理缩小桶数量。但也增加了桶内排序的过程。</p>
@@ -220,8 +349,8 @@
 <li>最好：O(n*k)</li>
 </ul>
 </blockquote>
-<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F7492974-c980be774a0cc76d.gif&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627895837&t=0c184d3053683c556a256d8824edacd7"></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//基数排序</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">RadixSort</span><span class="params">(arr []<span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	maxValLen := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(arr); i++ &#123;</span><br><span class="line">		n := <span class="built_in">len</span>(strconv.Itoa(arr[i]))</span><br><span class="line">		<span class="keyword">if</span> n &gt; maxValLen &#123;</span><br><span class="line">			maxValLen = n</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> loc := <span class="number">1</span>; loc &lt;= maxValLen; loc++ &#123;</span><br><span class="line">		Sort(arr, loc)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">Sort</span><span class="params">(arr []<span class="type">int</span>, loc <span class="type">int</span>)</span></span> &#123;</span><br><span class="line">	bucket := <span class="built_in">make</span>([][]<span class="type">int</span>, <span class="number">10</span>)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="built_in">len</span>(arr); i++ &#123;</span><br><span class="line">		ji := digit(arr[i], loc)</span><br><span class="line">		<span class="keyword">if</span> bucket[ji] == <span class="literal">nil</span> &#123;</span><br><span class="line">			bucket[ji] = <span class="built_in">make</span>([]<span class="type">int</span>, <span class="number">0</span>)</span><br><span class="line">		&#125;</span><br><span class="line">		bucket[ji] = <span class="built_in">append</span>(bucket[ji], arr[i])</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	idx := <span class="number">0</span></span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt;= <span class="number">9</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">for</span> j := <span class="number">0</span>; j &lt; <span class="built_in">len</span>(bucket[i]); j++ &#123;</span><br><span class="line">			arr[idx] = bucket[i][j]</span><br><span class="line">			idx++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fupload-images.jianshu.io%2Fupload_images%2F7492974-c980be774a0cc76d.gif&refer=http%3A%2F%2Fupload-images.jianshu.io&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1627895837&t=0c184d3053683c556a256d8824edacd7" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">//基数排序</span><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">RadixSort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>)</span></span> &#123;<br>	maxValLen := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(arr); i++ &#123;<br>		n := <span class="hljs-built_in">len</span>(strconv.Itoa(arr[i]))<br>		<span class="hljs-keyword">if</span> n &gt; maxValLen &#123;<br>			maxValLen = n<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">for</span> loc := <span class="hljs-number">1</span>; loc &lt;= maxValLen; loc++ &#123;<br>		Sort(arr, loc)<br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Sort</span><span class="hljs-params">(arr []<span class="hljs-type">int</span>, loc <span class="hljs-type">int</span>)</span></span> &#123;<br>	bucket := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>, <span class="hljs-number">10</span>)<br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(arr); i++ &#123;<br>		ji := digit(arr[i], loc)<br>		<span class="hljs-keyword">if</span> bucket[ji] == <span class="hljs-literal">nil</span> &#123;<br>			bucket[ji] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-number">0</span>)<br>		&#125;<br>		bucket[ji] = <span class="hljs-built_in">append</span>(bucket[ji], arr[i])<br>	&#125;<br><br>	idx := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">9</span>; i++ &#123;<br>		<span class="hljs-keyword">for</span> j := <span class="hljs-number">0</span>; j &lt; <span class="hljs-built_in">len</span>(bucket[i]); j++ &#123;<br>			arr[idx] = bucket[i][j]<br>			idx++<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <blockquote>
 <p>基数排序的性能要比桶排序略微差一点。基于分别排序，分别收集，是稳定的。</p>
@@ -229,4 +358,372 @@
 <h3 id="七，总结"><a href="#七，总结" class="headerlink" title="七，总结"></a>七，总结</h3><blockquote>
 <p>重新梳理排序算法的目的，就是加深印象。用golang进行实现也锻炼了逻辑思维能力。拓宽了视野。遇到问题不能只会一个冒泡，快排也可以考虑一下的哈。</p>
 </blockquote>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://qwen2024.github.io">LaoTie</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://qwen2024.github.io/2024/08/12/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8B/">https://qwen2024.github.io/2024/08/12/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://qwen2024.github.io" target="_blank">老铁的平行空间</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/golang/">golang</a></div><div class="post_share"><div class="social-share" data-image="/img/avator.jpg" data-sites="wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2024/08/12/%E4%B8%B2/" title="串--字符串"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">串--字符串</div></div></a></div><div class="next-post pull-right"><a href="/2024/08/12/%E4%B8%89%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4/" title="三阶段提交（3PC）"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">三阶段提交（3PC）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2024/04/16/go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" title="go语言基础"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-16</div><div class="title">go语言基础</div></div></a></div><div><a href="/2024/04/16/go%E5%85%B3%E9%94%AE%E5%AD%97/" title="go关键字"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-16</div><div class="title">go关键字</div></div></a></div><div><a href="/2024/04/23/%E9%A2%84%E5%AE%9A%E4%B9%89%E6%A0%87%E8%AF%86%E7%AC%A6/" title="预定义标识符"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-04-23</div><div class="title">预定义标识符</div></div></a></div><div><a href="/2024/08/12/ECDSA/" title="椭圆曲线算法"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-12</div><div class="title">椭圆曲线算法</div></div></a></div><div><a href="/2024/08/12/bufio/" title="bufio"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-12</div><div class="title">bufio</div></div></a></div><div><a href="/2024/08/12/golang%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="Golang 源码分析-error"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2024-08-12</div><div class="title">Golang 源码分析-error</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avator.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">LaoTie</div><div class="author-info__description">记录生活点滴，分享技术知识，记录学习历程</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">18</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/qwen2024"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://blog.csdn.net/tiehui1987" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:qwen2024@163.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">侠之大者，为国为民！</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95-%E4%B8%8B%E7%AF%87"><span class="toc-number">1.</span> <span class="toc-text">经典排序算法  下篇</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%EF%BC%8C%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.</span> <span class="toc-text">一，准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%EF%BC%8C%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F"><span class="toc-number">1.2.</span> <span class="toc-text">二，快速排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%EF%BC%8C%E5%A0%86%E6%8E%92%E5%BA%8F"><span class="toc-number">1.3.</span> <span class="toc-text">三，堆排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%EF%BC%8C%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">1.4.</span> <span class="toc-text">四，计数排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%EF%BC%8C%E6%A1%B6%E6%8E%92%E5%BA%8F"><span class="toc-number">1.5.</span> <span class="toc-text">五，桶排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%AD%EF%BC%8C%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F"><span class="toc-number">1.6.</span> <span class="toc-text">六，基数排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%83%EF%BC%8C%E6%80%BB%E7%BB%93"><span class="toc-number">1.7.</span> <span class="toc-text">七，总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/12/ECDSA/" title="椭圆曲线算法">椭圆曲线算法</a><time datetime="2024-08-12T09:53:23.000Z" title="发表于 2024-08-12 17:53:23">2024-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/12/bufio/" title="bufio">bufio</a><time datetime="2024-08-12T09:53:23.000Z" title="发表于 2024-08-12 17:53:23">2024-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/12/golang%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" title="Golang 源码分析-error">Golang 源码分析-error</a><time datetime="2024-08-12T09:53:23.000Z" title="发表于 2024-08-12 17:53:23">2024-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/12/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8B/" title="经典排序算法  下篇">经典排序算法  下篇</a><time datetime="2024-08-12T09:53:23.000Z" title="发表于 2024-08-12 17:53:23">2024-08-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/08/12/%E7%BB%8F%E5%85%B8%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8A/" title="经典排序算法  上篇">经典排序算法  上篇</a><time datetime="2024-08-12T09:53:23.000Z" title="发表于 2024-08-12 17:53:23">2024-08-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By LaoTie</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/golang/" class="category-chain-item">golang</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/golang/" class="print-no-link">#golang</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>经典排序算法  下篇</div>
+      <div>https://qwen2024.github.io/2024/08/12/排序算法下/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LaoTie</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/12/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8A/" title="经典排序算法  上篇">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">经典排序算法  上篇</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/12/%E6%A0%88/" title="栈">
+                        <span class="hidden-mobile">栈</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
