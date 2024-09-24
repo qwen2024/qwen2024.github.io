@@ -230,15 +230,137 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h2 class="index-header">
         
-        <a href="/2024/08/12/%E6%A0%88/" target="_self">
-          栈
+        <a href="/2024/08/12/%E4%B8%B2/" target="_self">
+          串--字符串
         </a>
       </h2>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E6%A0%88/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E4%B8%B2/" target="_self">
         <div>
-          栈 一，栈的定义 栈是限定仅在表尾进行插入和删除操作的线性表。 我们把允许插入和删除的一端称为栈顶（top）。另一端称为栈底（bottom）。不含任何元素的栈称为空栈。 栈又称为后进先出的线性表。（Last In Fist Out）LIFO 结构   最先进栈的就一定最后出栈吗？当然不是，应该说是不一定，因为第一个进栈如果，第二个进栈前就出栈了，对吧。   线性表有顺序结构和链式结构，同样栈也是这
+          串–字符串一，前言 串的定义   串是由零个或多个字符组成的有限序列，又名字符串。   空字符串  零个字符的串就是空串。也就是常说的  “”    二，串的比较 字符串的比较实际是比较字符的值，根据不同的编码进行存储，最初的ASCII 到 Unicode。从最初的128个字符，到65w多。 字符串的长度一样，每一个相对位置的字符值都一样，就可以说这两个字符串是相等的。  三，串的顺序存储结构 就
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-12 17:53" pubdate>
+              2024-08-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/golang/" class="category-chain-item">golang</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/golang/">#golang</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/12/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" target="_self">
+          单例模式
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" target="_self">
+        <div>
+          单例模式  单例模式介绍  1保证一个类仅有一个实例，并提供一个访问它的全局访问点   懒汉单例  1234567891011public class Singleton &#123;      private static Singleton instance;      private Singleton ()&#123;&#125;      public static Singleton
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-12 17:53" pubdate>
+              2024-08-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/golang/" class="category-chain-item">golang</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/golang/">#golang</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/12/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8A/" target="_self">
+          经典排序算法  上篇
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8A/" target="_self">
+        <div>
+          经典排序算法  上篇 一，准备工作12345678910111213141516//获取随机的数组func GetArry(count int) []int &#123;	arr := make([]int, count)	rand.Seed(time.Now().UnixNano())	for i := 0; i &lt; count; i++ &#123;		arr[i] = rand.Int
         </div>
       </a>
 
@@ -300,6 +422,67 @@
       <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%E4%B8%8B/" target="_self">
         <div>
           经典排序算法  下篇 一，准备工作12345678910111213141516171819202122232425262728293031323334//获取随机的数组func GetArry(count int) []int &#123;	arr := make([]int, count)	rand.Seed(time.Now().UnixNano())	for i := 0; i &lt;
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2024-08-12 17:53" pubdate>
+              2024-08-12
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/golang/" class="category-chain-item">golang</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/golang/">#golang</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2024/08/12/%E6%A0%88/" target="_self">
+          栈
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2024/08/12/%E6%A0%88/" target="_self">
+        <div>
+          栈 一，栈的定义 栈是限定仅在表尾进行插入和删除操作的线性表。 我们把允许插入和删除的一端称为栈顶（top）。另一端称为栈底（bottom）。不含任何元素的栈称为空栈。 栈又称为后进先出的线性表。（Last In Fist Out）LIFO 结构   最先进栈的就一定最后出栈吗？当然不是，应该说是不一定，因为第一个进栈如果，第二个进栈前就出栈了，对吧。   线性表有顺序结构和链式结构，同样栈也是这
         </div>
       </a>
 
@@ -651,194 +834,11 @@
     </article>
   </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/04/16/go%E5%85%B3%E9%94%AE%E5%AD%97/" target="_self">
-          go关键字
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/16/go%E5%85%B3%E9%94%AE%E5%AD%97/" target="_self">
-        <div>
-          Go关键字 一，介绍golang的25个关键字           for range select chan default   if fallthrough go func interface   break const package struct switch   type var return defer else   goto map continue case import   二，
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-16 17:53" pubdate>
-              2024-04-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/golang/" class="category-chain-item">golang</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">#golang</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/04/16/go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" target="_self">
-          go语言基础
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/04/16/go%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" target="_self">
-        <div>
-          Go语言基础 一，基础类型在包 builtin 里面定义了基础类型  bool  uint8  uint16  uint32  uint64  int8  int16  int32  int64  float32  float64  complex64  complex128  string  int  uint  uintptr  byte &#x3D; uint8  rune &#x3D; i
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-04-16 17:53" pubdate>
-              2024-04-16
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/golang/" class="category-chain-item">golang</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/golang/">#golang</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2021/07/13/%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" target="_self">
-          无重复字符的最长子串
-        </a>
-      </h2>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2021/07/13/%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2/" target="_self">
-        <div>
-          1 问题描述 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。  2 思路分析 滑动窗口  3 代码实现1234567891011121314151617181920212223242526272829if len(s) == 1 &#123;		return 1	&#125;	target := &quot;&quot;	arr := strings.Split(s, &q
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-07-13 11:15" pubdate>
-              2021-07-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/Algorithm/" class="category-chain-item">Algorithm</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/leetcode/">#leetcode</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
 
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/#board">3</a><a class="extend next" rel="next" href="/page/3/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
